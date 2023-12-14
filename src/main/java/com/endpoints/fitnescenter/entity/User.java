@@ -16,7 +16,12 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "users")
+@Table(
+        name = "users",
+        indexes = {
+                @Index(name = "fk_name_user", columnList = "name")
+        }
+)
 public class User {
 
     @Id

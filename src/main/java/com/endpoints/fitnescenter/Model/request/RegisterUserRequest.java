@@ -36,13 +36,13 @@ public class RegisterUserRequest {
 
     @NotBlank
     @Size(max = 30)
-    private String name_credit_card;
+    private String nameCreditCard;
 
     @NotBlank
     @Size(max = 50)
-    private String number_credit_card;
+    private String numberCreditCard;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date expired_card;
+    private Date expiredCard;
 
 }

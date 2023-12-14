@@ -61,9 +61,9 @@ public class UserService {
         user.setPhone(request.getPhone());
         user.setOtp(otp);
         user.setOtp_generated_time(LocalDateTime.now());
-        user.setName_credit_card(request.getName_credit_card());
-        user.setNumber_credit_card(request.getNumber_credit_card());
-        user.setCard_expired(request.getExpired_card());
+        user.setName_credit_card(request.getNameCreditCard());
+        user.setNumber_credit_card(request.getNumberCreditCard());
+        user.setCard_expired(request.getExpiredCard());
 
         userRepository.save(user);
     }
@@ -138,28 +138,33 @@ public class UserService {
             user.setEmail(request.getEmail());
         }
 
+        if (Objects.nonNull(user.getPhone())){
+            user.setPhone(request.getPhone());
+        }
+
         if (Objects.nonNull(user.getPassword())){
             user.setPassword(BCrypt.hashpw(request.getPassword(), BCrypt.gensalt()));
         }
 
         if (Objects.nonNull(user.getName_credit_card())) {
-            user.setName_credit_card(request.getName_credit_card());
+            user.setName_credit_card(request.getNameCard());
         }
 
         if (Objects.nonNull(user.getNumber_credit_card())){
-            user.setNumber_credit_card(request.getNumber_credit_card());
+            user.setNumber_credit_card(request.getNumberCreditCard());
         }
 
         if (Objects.nonNull(user.getCard_expired())){
-            user.setCard_expired(request.getExpired_card());
+            user.setCard_expired(request.getExpiredDate());
         }
 
         return UpdateUserResponse.builder()
                 .name(user.getName())
                 .email(user.getEmail())
-                .name_credit_card(user.getName_credit_card())
-                .number_credit_card(user.getNumber_credit_card())
-                .expired_card(user.getCard_expired())
+                .phone(user.getPhone())
+                .nameCard(user.getName_credit_card())
+                .numberCreditCard(user.getNumber_credit_card())
+                .expiredDate(user.getCard_expired())
                 .build();
     }
 

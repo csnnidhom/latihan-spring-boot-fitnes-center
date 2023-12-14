@@ -65,7 +65,7 @@ public class AuthService {
     }
 
     private Long tokenExpired() {
-        return System.currentTimeMillis() + (60000);
+        return System.currentTimeMillis() + (6000000);
     }
 
 }
